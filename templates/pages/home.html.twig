@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title 'Agence Super Immo' %}
+
+{% block body %}
+    <div class="jumbotron text-center">
+        <h1>Agence Super Immo</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent quis gravida sapien. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec hendrerit ex justo, pharetra ullamcorper mauris interdum sed. Aenean accumsan tempor nibh ut pulvinar. Vivamus consequat libero tellus, id ullamcorper odio imperdiet et. Sed iaculis efficitur lacus, in rutrum dolor tincidunt eu. Sed eu nibh in velit consectetur dictum et in velit. </p>
+    </div>
+
+    <div class="container">
+        <h2>Les derniers biens</h2>
+        <div class="row flex">
+            {% for property in properties %}
+                <div class="col-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <a href="{{ path('property.show', {id: property.id, slug: property.slug})}}">{{ property.title }}</a>
+                            </h5>
+                            <p class="card-text">
+                                {{ property.city }} ({{ property.postalCode }})
+                            </p>
+                            <div class="text-primary" style="font-weight: bold; font-size: 2rem">
+                                {{ property.formattedPrice }} €
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %} 
+
+
