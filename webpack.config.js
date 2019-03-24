@@ -41,10 +41,10 @@ Encore
     // enables hashed filenames (e.g. app.abc123.css)
     .enableVersioning(Encore.isProduction())
 
-    .configureBabel(function(babelConfig) {
+    //.configureBabel(function(babelConfig) {
         // add additional presets
-        babelConfig.presets.push('@babel/preset-flow');
-    })
+        //babelConfig.presets.push('@babel/preset-flow');
+    //})
 ;
     // enables Sass/SCSS support
     //.enableSassLoader()
