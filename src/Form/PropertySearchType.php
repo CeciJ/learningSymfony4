@@ -2,14 +2,17 @@
 
 namespace App\Form;
 
+use App\Entity\Option;
 use App\Entity\PropertySearch;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use App\Entity\Option;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 
 class PropertySearchType extends AbstractType
 {
@@ -36,7 +39,19 @@ class PropertySearchType extends AbstractType
                 'class' => Option::class,
                 'choice_label' => 'name',
                 'multiple' => true
-            ]);
+            ])
+            ->add('distance', ChoiceType::class, [
+                'choices' => [
+                    '10 km' => 10,
+                    '1000 km' => 1000
+                ]
+            ])
+            ->add('address', TextType::class, [
+                'required' => false,
+                'label' => false
+            ])
+            ->add('lat', HiddenType::class)
+            ->add('lng', HiddenType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver)

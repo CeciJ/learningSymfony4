@@ -19,11 +19,15 @@
             
             <div class="row">
                 <div class="col-md-8">
-                 {% if property.filename %}
-                    <img src="{{ vich_uploader_asset(property, 'imageFile') | imagine_filter('medium') }}" class="card-img-top" style="width: 100%; height: auto;">
-                {% else %}
-                    <img src="{{ '/images/properties/empty.jpg' | imagine_filter('medium') }}" class="card-img-top" style="width: 100%; height: auto;">
-                {% endif %}
+                    <div data-slider>
+                        {% if property.pictures is empty %}
+                            <img src="{{ '/images/empty.jpg' | imagine_filter('thumb') }}" class="card-img-top" style="width: 100%; height: auto;">
+                        {% else %}
+                            {% for picture in property.pictures %}
+                                <img src="{{ vich_uploader_asset(picture, 'imageFile') | imagine_filter('medium') }}" class="card-img-top" style="width: 100%; height: auto;">
+                            {% endfor %}
+                        {% endif %}
+                    </div>
                 </div>
 
                 <div class="col-md-4">
@@ -91,5 +95,8 @@
                 </ul>
             </div> 
         </div>  
+        <div id="map" style="width: 100%; height: 400px" data-lat="{{ property.lat }}" data-lng="{{ property.lng }}">
+        
+        </div>
     </div>
 {% endblock %}

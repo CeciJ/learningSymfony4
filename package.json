@@ -13,6 +13,9 @@
     },
     "dependencies": {
         "core-js": "3",
-        "select2": "^4.0.6-rc.1"
+        "leaflet": "^1.4.0",
+        "places.js": "^1.16.1",
+        "select2": "^4.0.6-rc.1",
+        "slick-carousel": "^1.8.1"
     }
 }
