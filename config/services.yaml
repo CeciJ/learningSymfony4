@@ -28,5 +28,22 @@ services:
         tags:
         - { name: doctrine.event_subscriber }
 
+    Twig\CacheExtension\CacheProviderInterface:
+        class: Twig\CacheExtension\CacheProvider\PsrCacheAdapter    
+    
+    Twig\CacheExtension\CacheStrategy\KeyGeneratorInterface:
+        class: App\MyKeyGenerator
+    
+    Twig\CacheExtension\CacheStrategyInterface:
+        class: Twig\CacheExtension\CacheStrategy\LifetimeCacheStrategy
+        #class: Twig\CacheExtension\CacheStrategy\GenerationalCacheStrategy
+
+    Twig\CacheExtension\Extension:
+        tags:
+        - { name: twig.extension }
+    
+    #Twig\CacheExtension\CacheStrategy\KeyGenerator:
+    #    class: Twig\CacheExtension\CacheStrategy\KeyGeneratorInterface
+
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

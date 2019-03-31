@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin;
 
+use DateTimeZone;
 use App\Entity\Option;
 use App\Entity\Property;
 use App\Form\PropertyType;
@@ -10,8 +11,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class AdminPropertyController extends AbstractController 
 {
@@ -76,10 +77,12 @@ class AdminPropertyController extends AbstractController
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()){
+            $date = $property->setUpdatedAt(new \DateTime('now', new DateTimeZone('Europe/Paris')));
             $this->em->flush();
             $this->addFlash('success', 'Bien modifié avec succès');
             return $this->redirectToRoute('admin.property.index');
         }
+
         return $this->render('admin/property/edit.html.twig', [
             'property' => $property,
             'form' => $form->createView()

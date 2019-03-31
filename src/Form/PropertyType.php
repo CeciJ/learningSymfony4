@@ -11,6 +11,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 
 class PropertyType extends AbstractType
 {
@@ -43,6 +44,11 @@ class PropertyType extends AbstractType
             ->add('lat', HiddenType::class)
             ->add('lng', HiddenType::class)
             ->add('sold')
+            
+            //->add('updatedAt', DateTimeType::class , array( 
+                //'attr' => array('style'=>'display:none;'),
+                //'widget' => 'single_text'
+                //))
         ;
     }
 
