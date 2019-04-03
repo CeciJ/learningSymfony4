@@ -1,0 +1,10 @@
+#services:
+#  recaptcha.type:
+#    class: Cecile\RecaptchaBundle\Type\RecaptchaSubmitType
+#    tags: ['form.type']
+#    arguments: 
+#      $key: '6Lfg05sUAAAAAMdCrEIKzq0-6lDVKP423a030hX9'
+
+recaptcha:
+  key: '%env(GOOGLE_RECAPTCHA_KEY)%'
+  secret: '%env(GOOGLE_RECAPTCHA_SECRET)%'
